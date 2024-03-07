@@ -1,0 +1,51 @@
+// Adrian Dey || 28069843
+// Desc : This code rolls 3 die, which then get added together and is presented to the user.
+
+using System;
+using System.Diagnostics;
+using oopcode;
+
+namespace oopcode
+{
+    public class Die
+    {
+        public static int Roll;
+        public static Random random = new Random(); // <-- This generates random numbers 
+
+        public static void Main(string[] args)
+        {
+            Game game = new Game(); // <-- instance of game class
+            game.GameRoll(); // <-- call method
+        }
+        public static void RollDie()
+        {
+            Roll = random.Next(1, 7); // <-- Dice, numbers 1-6
+        }
+
+    }
+
+    public class Game
+    {
+        public void GameRoll()
+        {
+            int rollSum = 0;
+
+            for (int i = 0; i < 3; i++) // <-- For loop rolls 3 dice
+            {
+                Die.RollDie();
+                Console.WriteLine("Dice Roll = "+Die.Roll); // <-- Prints each indivudal dice roll
+                rollSum += Die.Roll;
+            }
+            Console.WriteLine("Sum of dice rolls = " + rollSum); // <-- Prints the sum of each individual dice roll
+        }
+
+    }
+    public class Testing
+    {
+        public void Test()
+        {
+            Debug.Assert(Die.Roll > 6, "Dice rolls can't be higher than 6."); // <-- Makes sure that no dice rolls are higher than 6.
+        }
+        
+    }
+}
